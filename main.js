@@ -13,16 +13,16 @@ formulario.addEventListener('submit', function (event) {
 
     var dadosTexto = JSON.stringify(dados);
 
-    varxhr = new XMLHttpRequest(); // instancia do objeto XMLHttpRequest, responsavel por sisparar as requisições ajax
-    XPathResult.open('POST', 'https://o-que-e-ajax.herokuapp.com');
-    XPathResult.setRequestHeader('Content-Type', 'application/json');
+    var xhr = new XMLHttpRequest(); // instancia do objeto XMLHttpRequest, responsavel por sisparar as requisições ajax
+    xhr.open('POST', 'https://o-que-e-ajax.herokuapp.com');
+    xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onload = function () { // função que será executada quando a requisição concluir
-        var mensagem = document.querySelector('div.alert');
+        var mensagem = document.querySelector("div.alert");
         mensagem.textContent = xhr.responseText; // acessando a resposta do servidor e adicionando dentro do elemento da mensagem
-        mensagemList.remove('invisible'); // classe do bootstrap;
+        mensagem.classList.remove("invisible"); // classe do bootstrap;
         formulario.reset(); // limpando dados do formulario
     }
 
-    XPathResult.send(dadosTexto); // dados convertidos em string e adicionado na requisição
+    xhr.send(dadosTexto); // dados convertidos em string e adicionado na requisição
 });
